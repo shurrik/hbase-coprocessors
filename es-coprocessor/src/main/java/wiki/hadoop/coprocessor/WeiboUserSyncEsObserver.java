@@ -14,6 +14,8 @@ import org.apache.hadoop.hbase.util.Bytes;
 import org.apache.hadoop.hbase.wal.WALEdit;
 import org.apache.log4j.Logger;
 
+import org.elasticsearch.action.delete.DeleteRequest;
+import org.elasticsearch.action.index.IndexRequest;
 import wiki.hadoop.es.ESClient;
 import wiki.hadoop.es.ElasticSearchBulkOperator;
 
@@ -68,7 +70,7 @@ public class WeiboUserSyncEsObserver implements RegionObserver , RegionCoprocess
             // set hbase family to es
             infoJson.put("info", json);
 //            LOG.info(json.toString());
-            ElasticSearchBulkOperator.addUpdateBuilderToBulk(ESClient.client.prepareUpdate(index,type, indexId).setDocAsUpsert(true).setDoc(json));
+            ElasticSearchBulkOperator.addUpdateBuilderToBulk(new IndexRequest(index).id(indexId).source(json));
             if(Bytes.toString(put.getRow()).contains("test")) {
 				LOG.info(json.toString());
 				LOG.info("**** postPut success*****");
@@ -81,7 +83,7 @@ public class WeiboUserSyncEsObserver implements RegionObserver , RegionCoprocess
     public void postDelete(ObserverContext<RegionCoprocessorEnvironment> e, Delete delete, WALEdit edit, Durability durability) throws IOException {
         String indexId = new String(delete.getRow());
         try {
-            ElasticSearchBulkOperator.addDeleteBuilderToBulk(ESClient.client.prepareDelete(index,type, indexId));
+            ElasticSearchBulkOperator.addDeleteBuilderToBulk(new DeleteRequest(index,indexId));
             LOG.info("**** postDelete success*****");
         } catch (Exception ex) {
             LOG.error(ex);

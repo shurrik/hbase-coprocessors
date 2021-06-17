@@ -12,9 +12,9 @@
 	</modules>
 
 	<properties>
-		<hadoop.version>3.0.0</hadoop.version>
-		<hbase.version>2.0.0</hbase.version>
-		<elasticsearch.version>6.3.0</elasticsearch.version>
+		<hadoop.version>3.0.3</hadoop.version>
+		<hbase.version>2.1.4</hbase.version>
+		<elasticsearch.version>7.7.1</elasticsearch.version>
 		<hutool.version>5.3.10</hutool.version>
 	</properties>
 
@@ -46,11 +46,18 @@
 				<artifactId>elasticsearch</artifactId>
 				<version>${elasticsearch.version}</version>
 			</dependency>
+<!--			<dependency>-->
+<!--				<groupId>org.elasticsearch.client</groupId>-->
+<!--				<artifactId>transport</artifactId>-->
+<!--				<version>${elasticsearch.version}</version>-->
+<!--			</dependency>-->
 			<dependency>
 				<groupId>org.elasticsearch.client</groupId>
-				<artifactId>transport</artifactId>
-				<version>${elasticsearch.version}</version>
+				<artifactId>elasticsearch-rest-high-level-client</artifactId>
+				<version>7.7.1</version>
 			</dependency>
+
+
 			<dependency>
 				<groupId>cn.hutool</groupId>
 				<artifactId>hutool-all</artifactId>

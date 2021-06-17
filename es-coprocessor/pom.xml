@@ -9,17 +9,20 @@
 	</parent>
 	<artifactId>es-coprocessor</artifactId>
 	<description>将用户保存至es</description>
-	<version>0.0.14</version>
-
+	<version>0.0.20</version>
+	<properties>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+	</properties>
 	<dependencies>
 
-		<dependency>
-			<groupId>jdk.tools</groupId>
-			<artifactId>jdk.tools</artifactId>
-			<version>1.8</version>
-			<scope>system</scope>
-			<systemPath>${JAVA_HOME}/lib/tools.jar</systemPath>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>jdk.tools</groupId>-->
+<!--			<artifactId>jdk.tools</artifactId>-->
+<!--			<version>1.8</version>-->
+<!--			<scope>system</scope>-->
+<!--			<systemPath>${JAVA_HOME}/lib/tools.jar</systemPath>-->
+<!--		</dependency>-->
 <!-- https://mvnrepository.com/artifact/io.netty/netty-all -->
 <!-- <dependency>
 	<groupId>io.netty</groupId>
@@ -55,9 +58,13 @@
 			<groupId>org.elasticsearch</groupId>
 			<artifactId>elasticsearch</artifactId>
 		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>org.elasticsearch.client</groupId>-->
+<!--			<artifactId>transport</artifactId>-->
+<!--		</dependency>-->
 		<dependency>
 			<groupId>org.elasticsearch.client</groupId>
-			<artifactId>transport</artifactId>
+			<artifactId>elasticsearch-rest-high-level-client</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>cn.hutool</groupId>
